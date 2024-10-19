@@ -10,7 +10,7 @@ class DoublyLinkedList{
 
     // 1. push(val): add a new node to the end of the linked list
     push(val){
-        // create a new node
+
         let tempNode = new Node(val);
         // if the linked list is empty
         if(this.head === null){
@@ -22,9 +22,8 @@ class DoublyLinkedList{
             tempNode.previous = this.tail; // the new node's previous will be the current tail
             this.tail = tempNode; // the new node will be the new tail of the linked list
         }
+        console.log("Pushed: ", val);
         this.length++; // increase the length of the linked list
-        // return the linked list
-        return this;
     }
 
     // 2. pop(): remove the last node of the linked list
@@ -46,7 +45,7 @@ class DoublyLinkedList{
         tempNode.previous = null;
         tempNode.next = null;
         this.length--;
-        return this;  
+        return tempNode.data;
     }
 
     // 3. shift(): remove the first node of the linked list
@@ -68,7 +67,8 @@ class DoublyLinkedList{
         shiftedNode.previous = null;
         shiftedNode.next = null;
         this.length--;
-        return this;
+        
+        return shiftedNode.data;
     }
 
     // 4. unshift(val): add a new node to the beginning of the linked list
@@ -82,12 +82,11 @@ class DoublyLinkedList{
             tempNode.next = this.head;
             this.head.previous = tempNode;
             this.head = tempNode;
-            this.length++;
         } 
-        return this;
+        this.length++;
     }
 
-    // getNode function will be called/used later in other functions
+    // getNode function will be used later in other functions
     getNode(index) {
         if (index < 0 || index >= this.length) {
             return null;
@@ -115,16 +114,18 @@ class DoublyLinkedList{
         if(current !== null){
             return current.data;
         }
+        console.log("Invalid index, cannot get");
         return null;
     }
 
     // 6. set(index, val): set the value of the node at the given index
     set(index, val){
-        let current = this.get(index);
+        let current = this.getNode(index);
         if(current !== null){
             current.data = val;
             return true;
         }
+        console.log("Invalid index value, cant set");
         return false;
     }
 
@@ -132,34 +133,41 @@ class DoublyLinkedList{
     insert(index,val){
         // if the index is invalid
         if(index < 0 || index > this.length){
-            return false;
+            console.log("Invalid index, cannot insert");
+            return;
         }
         // if the index is 0, then we perform the unshift operation
         if(index === 0){
             this.unshift(val);
-            return true;
+            return;
         }
         // if the index is the same as the length of the linked list, then we perform the push operation
         if(index === this.length){
             this.push(val);
-            return true;
+            return;
         }
         // in the other cases:
         let tempNode = new Node(val);
         let current = this.getNode(index);
-        let previous = current.previous;
-        previous.next = tempNode;
-        tempNode.previous = previous;
-        tempNode.next = current;
-        current.previous = tempNode;
-        this.length++; 
-        return true;
+
+        if(current !== null){
+            let previous = current.previous;
+            previous.next = tempNode;
+            tempNode.previous = previous;
+            tempNode.next = current;
+            current.previous = tempNode;
+            this.length++;
+            console.log("Inserted: ", val);
+        }else {
+            console.log("Current node is null, cannot insert");
+        }
     }
 
     // 8. remove(index): remove the node at the given index
     remove(index){
         // if the index is invalid
         if(index < 0 || index >= this.length){
+            console.log("Invalid index, cannot remove");
             return null;
         }
         // if the index is 0, then we perform the shift operation
@@ -180,19 +188,17 @@ class DoublyLinkedList{
         current.previous = null;
         current.next = null;
         this.length--;
-        return this;
+        console.log("Removed: ", current.data);
+        return current.data;
     }
-
     // print the linked list
     print(){
         let current = this.head;
         console.log("Printing the linked list:");
-        console.log("====================================");
-        while(current !== null){
+        while(current != null){
             console.log(current.data);
             current = current.next;
         }
-        console.log("====================================");
     }
 }
 
