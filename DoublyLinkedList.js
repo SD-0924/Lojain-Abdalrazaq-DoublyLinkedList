@@ -24,6 +24,8 @@ class DoublyLinkedList{
             this.tail = tempNode; // the new node will be the new tail of the linked list
         }
         this.length++; // increase the length of the linked list
+
+        return this;
     }
 
     // 2. pop(): remove the last node of the linked list
@@ -45,7 +47,9 @@ class DoublyLinkedList{
         tempNode.previous = null;
         tempNode.next = null;
         this.length--;
-        return tempNode.data;  
+
+        // return the data of the popped node
+        return this;  
     }
 
     // 3. shift(): remove the first node of the linked list
@@ -67,7 +71,9 @@ class DoublyLinkedList{
         shiftedNode.previous = null;
         shiftedNode.next = null;
         this.length--;
-        return shiftedNode.data;
+
+        // return the data of the shifted node
+        return this;
     }
 
     // 4. unshift(val): add a new node to the beginning of the linked list
@@ -83,6 +89,7 @@ class DoublyLinkedList{
             this.head = tempNode;
             this.length++;
         } 
+        return this;
     }
 
     // getNode function will be used later in the get and set methods
@@ -114,7 +121,7 @@ class DoublyLinkedList{
         if(current !== null){
             return current.data;
         }
-        return null
+        return null;
     }
 
     // 6. set(index, val): set the value of the node at the given index
@@ -125,6 +132,22 @@ class DoublyLinkedList{
             return true;
         }
         return false;
+    }
+
+    // 7. insert(index, val): insert a new node at the given index
+    insert(index,val){
+        // if the index is invalid
+        if(index < 0 || index > this.length){
+            return false;
+        }
+        // if the index is 0, then we perform the unshift operation
+        if(index === 0){
+            this.unshift(val);
+            return true;
+        }
+
+
+
     }
 
 
