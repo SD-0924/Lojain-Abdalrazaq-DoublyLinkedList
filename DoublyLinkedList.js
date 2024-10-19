@@ -25,6 +25,23 @@ class DoublyLinkedList{
         }
     }
 
-
+    // 2. pop(): remove the last node of the linked list
+    pop(){
+        // if the linked list is empty
+        if(this.head === null){
+            return null;
+        }else{
+            let tempNode = this.tail; // store the current tail
+            // if the linked list has only one node
+            if(this.head === this.tail){
+                this.head = null;
+                this.tail = null;
+            }else{
+                this.tail = this.tail.previous; // the previous node of the current tail will be the new tail
+                this.tail.next = null; // the next of the new tail will be null
+            }
+        }
+        return tempNode.data;  
+    }
 
 }
