@@ -1,12 +1,11 @@
-import DoublyLinkedList from './DoublyLinkedList.js';
-import Node from './Node.js';
+const DoublyLinkedList = require('./DoublyLinkedList.js');
 
 // Testing the linked list operations
-let doublyLinkedList = new DoublyLinkedList();
+const list = new DoublyLinkedList();
 // Push operations
-doublyLinkedList.push(10);
-doublyLinkedList.push(20);
-doublyLinkedList.push(30);
-doublyLinkedList.push(40);
-doublyLinkedList.push(50);
-console.log(doublyLinkedList);
+list.push(10);
+list.push(20);
+list.push(30);
+list.push(40);
+list.push(50);
+console.log(list.print());

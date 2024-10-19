@@ -1,5 +1,4 @@
-import Node from './Node.js';
-
+const Node = require('./Node');
 class DoublyLinkedList{
 
     // for creating a new linked list
@@ -196,3 +195,5 @@ class DoublyLinkedList{
         console.log("====================================");
     }
 }
+
+module.exports = DoublyLinkedList;
