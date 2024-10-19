@@ -7,8 +7,7 @@ class DoublyLinkedList{
         // tail will be the last node of the linked list
         this.tail = null;
     }
-
-    // operations to the linked list
+    
     // 1. push(val): add a new node to the end of the linked list
     push(val){
         // create a new node
@@ -52,19 +51,24 @@ class DoublyLinkedList{
         if(this.head === null){
             return null;
         }
-        let shiftedNode = this.head; // store the current head
+        let shiftedNode = this.head;
         // if the linked list has only one node
         if(this.head === this.tail){
-            this.head = null; // the head will be null
-            this.tail = null;  // the tail will be null
+            this.head = null; 
+            this.tail = null; 
         }else{
-            this.head = this.head.next; // the next node of the current head will be the new head
-            this.head.previous = null; // the previous of the new head will be null
+            this.head = this.head.next;
+            this.head.previous = null; 
         }
         // now, removing the links of the shifted node
         shiftedNode.previous = null;
         shiftedNode.next = null;
         return shiftedNode.data;
     }
-    
+
+    // 4. unshift(val): add a new node to the beginning of the linked list
+    unshift(val){
+        
+    }
+
 }
