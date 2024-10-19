@@ -24,7 +24,7 @@ class DoublyLinkedList{
             this.tail = tempNode; // the new node will be the new tail of the linked list
         }
         this.length++; // increase the length of the linked list
-
+        // return the linked list
         return this;
     }
 
@@ -47,8 +47,6 @@ class DoublyLinkedList{
         tempNode.previous = null;
         tempNode.next = null;
         this.length--;
-
-        // return the data of the popped node
         return this;  
     }
 
@@ -71,8 +69,6 @@ class DoublyLinkedList{
         shiftedNode.previous = null;
         shiftedNode.next = null;
         this.length--;
-
-        // return the data of the shifted node
         return this;
     }
 
@@ -145,12 +141,20 @@ class DoublyLinkedList{
             this.unshift(val);
             return true;
         }
-
-
-
+        // if the index is the same as the length of the linked list, then we perform the push operation
+        if(index === this.length){
+            this.push(val);
+            return true;
+        }
+        // in the other cases:
+        let tempNode = new Node(val);
+        let current = this.getNode(index);
+        let previous = current.previous;
+        previous.next = tempNode;
+        tempNode.previous = previous;
+        tempNode.next = current;
+        current.previous = tempNode;
+        this.length++; 
+        return true;
     }
-
-
-
-
 }
