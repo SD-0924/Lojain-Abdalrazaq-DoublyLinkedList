@@ -1,3 +1,5 @@
+import Node from './Node.js';
+
 class DoublyLinkedList{
 
     // for creating a new linked list
@@ -7,7 +9,7 @@ class DoublyLinkedList{
         // tail will be the last node of the linked list
         this.tail = null;
     }
-    
+
     // 1. push(val): add a new node to the end of the linked list
     push(val){
         // create a new node
@@ -68,7 +70,16 @@ class DoublyLinkedList{
 
     // 4. unshift(val): add a new node to the beginning of the linked list
     unshift(val){
-        
+        let tempNode = new Node(val);
+        // if the linked list is empty
+        if(this.head === null){
+            this.head = tempNode;
+            this.tail = tempNode;
+        }else{
+            tempNode.next = this.head;
+            this.head.previous = tempNode;
+            this.head = tempNode;
+        } 
     }
 
 }
