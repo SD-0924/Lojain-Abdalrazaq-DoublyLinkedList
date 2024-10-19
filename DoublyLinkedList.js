@@ -46,4 +46,25 @@ class DoublyLinkedList{
         return tempNode.data;  
     }
 
+    // 3. shift(): remove the first node of the linked list
+    shift(){
+        // if the linked list is empty
+        if(this.head === null){
+            return null;
+        }
+        let shiftedNode = this.head; // store the current head
+        // if the linked list has only one node
+        if(this.head === this.tail){
+            this.head = null; // the head will be null
+            this.tail = null;  // the tail will be null
+        }else{
+            this.head = this.head.next; // the next node of the current head will be the new head
+            this.head.previous = null; // the previous of the new head will be null
+        }
+        // now, removing the links of the shifted node
+        shiftedNode.previous = null;
+        shiftedNode.next = null;
+        return shiftedNode.data;
+    }
+    
 }
