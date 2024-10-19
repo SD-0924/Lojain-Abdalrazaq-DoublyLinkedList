@@ -157,4 +157,31 @@ class DoublyLinkedList{
         this.length++; 
         return true;
     }
+
+    // 8. remove(index): remove the node at the given index
+    remove(index){
+        // if the index is invalid
+        if(index < 0 || index >= this.length){
+            return null;
+        }
+        // if the index is 0, then we perform the shift operation
+        if(index === 0){
+            return this.shift();
+        }
+        // if the index is the same as the length of the linked list - 1, then we perform the pop operation
+        if(index === this.length - 1){
+            return this.pop();
+        }
+        // in the other cases:
+        let current = this.getNode(index);
+        let previous = current.previous;
+        let next = current.next;
+        previous.next = next;
+        next.previous = previous;
+        // now, removing the links of the removed node to be removed later by the garbage collector
+        current.previous = null;
+        current.next = null;
+        this.length--;
+        return this;
+    }
 }
