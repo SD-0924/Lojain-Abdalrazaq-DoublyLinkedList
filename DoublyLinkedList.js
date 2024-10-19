@@ -88,12 +88,11 @@ class DoublyLinkedList{
         return this;
     }
 
-    // getNode function will be used later in the get and set methods
+    // getNode function will be called/used later in other functions
     getNode(index) {
         if (index < 0 || index >= this.length) {
             return null;
         }
-    
         let current;
         // Check if the index is in the first half of the list
         if (index <= Math.floor(this.length / 2)) {
@@ -183,5 +182,17 @@ class DoublyLinkedList{
         current.next = null;
         this.length--;
         return this;
+    }
+
+    // print the linked list
+    print(){
+        let current = this.head;
+        console.log("Printing the linked list:");
+        console.log("====================================");
+        while(current !== null){
+            console.log(current.data);
+            current = current.next;
+        }
+        console.log("====================================");
     }
 }
